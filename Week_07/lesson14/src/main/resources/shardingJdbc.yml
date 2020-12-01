@@ -1,0 +1,25 @@
+dataSources:
+  # 配置第 1 个数据源
+  master: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/ecommerce?serverTimezone=UTC
+    username: root
+    password: root
+  # 配置第 2 个数据源
+  slave: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+    username: root
+    password: root
+rules:
+- !REPLICA_QUERY
+  dataSources:
+    ds0:
+      primaryDataSourceName: master
+      replicaDataSourceNames: [slave]
+      loadBalancerName: roundRobin
+  loadBalancers:
+    roundRobin:
+      type: ROUND_ROBIN
+props:
+  sql-show: true
