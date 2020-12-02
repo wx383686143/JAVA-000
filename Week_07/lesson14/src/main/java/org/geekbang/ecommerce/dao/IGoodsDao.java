@@ -4,5 +4,7 @@ import org.geekbang.ecommerce.vo.GoodsVO;
 
 public interface IGoodsDao {
 
-    public void add(GoodsVO goodsVO);
+    void add(GoodsVO goodsVO);
+
+    GoodsVO get(Long pk);
 }

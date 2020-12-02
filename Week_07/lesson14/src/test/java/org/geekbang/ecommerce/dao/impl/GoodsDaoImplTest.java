@@ -2,6 +2,7 @@ package org.geekbang.ecommerce.dao.impl;
 
 import org.geekbang.ecommerce.Application;
 import org.geekbang.ecommerce.dao.IGoodsDao;
+import org.geekbang.ecommerce.services.IGoodsService;
 import org.geekbang.ecommerce.vo.GoodsVO;
 import org.junit.Test;
 import org.junit.Before; 
@@ -25,7 +26,7 @@ import java.math.BigDecimal;
 public class GoodsDaoImplTest {
 
     @Autowired
-    IGoodsDao goodsDao;
+    IGoodsService goodsService;
 
     @Before
     public void before() throws Exception { 
@@ -44,12 +45,17 @@ public class GoodsDaoImplTest {
     public void testAdd() throws Exception {
         GoodsVO goodsVO = new GoodsVO();
         goodsVO.setGoodsNo("G0000001");
-        goodsVO.setGoodsName("惠普电脑");
+        goodsVO.setGoodsName("惠普电脑master");
         goodsVO.setGoodsType("电器");
         goodsVO.setQuantity(2);
         goodsVO.setPrice(new BigDecimal(3000.00));
-        goodsDao.add(goodsVO);
+        goodsService.add(goodsVO);
     }
-    
+
+    @Test
+    public void testGet() throws  Exception {
+        GoodsVO goodsVO = goodsService.get(1l);
+        System.out.println(goodsVO.getGoodsName());
+    }
 
 } 

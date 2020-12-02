@@ -13,14 +13,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository
+//@Repository
 public class UserDaoImpl implements IUserDao {
 
     private Connection con;
     private PreparedStatement statement;
     private ResultSet rs;
 
-    @Resource(name = "masterDataSource")
+//    @Resource(name = "masterDataSource")
     private DataSource masterDataSource;
 
     @Override
